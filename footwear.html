@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width-device-width, initial-scale=1.0">
+        <title>Footwear</title>
+        <link rel="stylesheet" href="css-sheets/style.css">
+        <script>
+            /* Defining Table
+                INPUT:  Get two numbers from two different input boxes - x and y
+                PROCESSING: Add the two numbers together store in sum
+                OUTPUT: Display sum on the document
+                */
+
+                function determineShoe(){
+
+                    let weather = document.getElementById("weather-select").value;
+                    let shoeType = "";
+                    let answer = "Try again.";
+
+                    switch(weather){
+                        case "hot":
+                            shoeType = "sandals";
+                            break;
+                        case "rain":
+                            shoeType = "galoshes";
+                            break;
+                        case "snow":
+                            shoeType = "boots";
+                            break;
+                        case "unknown":
+                            shoeType = "shoes";
+                            break;
+                    }
+
+                    if (shoeType != ""){
+                        answer = "You should wear " + shoeType + ".";
+                    }
+
+                    document.getElementById("output").innerHTML = answer;
+                }
+        </script>
+    </head>
+    <body>
+        <header>
+            <h1>Week 6: Footwear</h1>
+            <h2>Andrew Blackburn</h2>
+        </header>
+        <main>
+            <h3>Footwear Selection</h3>
+            <select name="weather" id="weather-select">
+
+                <option value="">--What weather do you think it will be?--</option>
+                <option value="hot">Hot</option>
+                <option value="rain">Rain</option>
+                <option value="snow">Snow</option>
+                <option value="unknown">Unknown</option>
+            </select>
+            <label><button onclick="determineShoe()">Tell me what shoes to wear!</button></label>
+            <hr>
+            <p><span id="output"></span></p>
+        </main>
+        <footer>
+            &copy;2020 &bull; Andrew Blackburn &bull; BYU-Idaho &bull; CIT 160
+        </footer>
+    </body>
+</html>

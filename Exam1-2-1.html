@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width-device-width, initial-scale=1.0">
+        <title>Exam 1 Part 2 Problem 1</title>
+        <link rel="stylesheet" href="css-sheets/style.css">
+        
+    </head>
+    <body>
+        <header>
+            <h1>Exam 2-1 Problem 1</h1>
+            <h2>Andrew Blackburn</h2>
+        </header>
+        <main>
+            <h3>Employee Pay Evaluation</h3>
+            <label>Enter Regular Hours: <input type="text" id="number1"></label>
+        <label>Enter Overtime Hours: <input type="text" id="number2"></label>
+            <label><button onclick="calculatePay()">Calculate Pay</button></label>
+            <hr>
+            <p><span id="output"></span></p>
+        </main>
+        <footer>
+            &copy;2020 &bull; Andrew Blackburn &bull; BYU-Idaho &bull; CIT 160
+        </footer>
+        <script>
+
+            function calculatePay(){
+
+                // Setting input and constants
+                const payRate = 15;
+                const overtimeRate = 22.5;
+                const taxRate = 0.15;
+                let regHours = parseFloat(document.getElementById('number1').value);
+                let overtimeHours = parseFloat(document.getElementById('number2').value);
+
+                // Processing
+                let regPay = regHours * payRate;
+                let overtimePay = overtimeHours * overtimeRate;
+                let totalPay = (1 - taxRate) * (regPay + overtimePay);
+
+                // Output
+                document.getElementById('output').innerHTML = "The total pay is $" + totalPay.toFixed(2);
+
+            }
+        </script>
+    </body>
+</html>

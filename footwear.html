@@ -13,11 +13,13 @@
                 */
 
                 function determineShoe(){
-
+                    
+                    // Input: Determine shoe type selected.
                     let weather = document.getElementById("weather-select").value;
                     let shoeType = "";
                     let answer = "Try again.";
-
+                    
+                    // Processing: Determine shoe type by answer. Then, if shoe type is still blank....
                     switch(weather){
                         case "hot":
                             shoeType = "sandals";
@@ -36,6 +38,8 @@
                     if (shoeType != ""){
                         answer = "You should wear " + shoeType + ".";
                     }
+
+                    // Output: Give answer.
 
                     document.getElementById("output").innerHTML = answer;
                 }

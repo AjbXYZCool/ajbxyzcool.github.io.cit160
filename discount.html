@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width-device-width, initial-scale=1.0">
+        <title>Sales Calculator</title>
+        <link rel="stylesheet" href="css-sheets/style.css">
+        <script>
+            
+            function salesCalc() {
+                //INPUT
+                let x = parseFloat(document.getElementById("subtotal").value);
+                var dayOfWeek = new Date().getDay();
+                let salesTotal = 0;
+                //PROCESSING
+                if (dayOfWeek == 2 || dayOfWeek == 3){
+                    salesTotal = x * 0.9;
+                }
+                else { salesTotal = x; }
+                let taxTotal = salesTotal * 1.06;
+                //OUTPUT
+                document.getElementById('output').innerHTML = "The grand total is " + taxTotal + ".";
+                }
+        </script>
+    </head>
+    <body>
+        <header>
+            <h1>Week 7: Sales</h1>
+            <h2>Andrew Blackburn</h2>
+        </header>
+        <main>
+            <h3>Sales Calculator</h3>
+            <label>Enter Subtotal: <input type="text" id="subtotal"></label>
+            <label><button onclick="salesCalc()">Total balance</button></label>
+            <hr>
+            <p><span id="output"></span></p>
+        </main>
+        <footer>
+            &copy;2020 &bull; Andrew Blackburn &bull; BYU-Idaho &bull; CIT 160
+        </footer>
+    </body>
+</html>

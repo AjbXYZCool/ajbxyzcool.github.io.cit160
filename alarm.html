@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width-device-width, initial-scale=1.0">
+        <title>Alarm</title>
+        <link rel="stylesheet" href="css-sheets/style.css">
+        <script>
+            /* Defining Table
+                INPUT:  Get dates
+                PROCESSING: Determine if it's the weekend or one of 3 holidays
+                OUTPUT: Display response
+                */
+
+            function alarmCheck() {
+                //INPUT
+                var now = new Date();
+                var month = now.getMonth();
+                var dayOfMonth = now.getDate();
+                var dayOfWeek = now.getDay();
+                let response;
+                //PROCESSING
+                if ((dayOfWeek == 0 || dayOfWeek == 6) || (month == 0 && dayOfMonth == 1) || (month == 6 && dayOfMonth == 4) || (month == 11 && dayOfMonth == 25)){
+                    response = "Sleep in.";
+                }
+                else { response = "Get up!"; }
+                //OUTPUT
+                document.getElementById('output').innerHTML = response;
+                }
+        </script>
+    </head>
+    <body>
+        <header>
+            <h1>Week 7:To wake or not to wake, that is the question</h1>
+            <h2>Andrew Blackburn</h2>
+        </header>
+        <main>
+            <h3>Add Two Numbers</h3>
+            <label><button onclick="alarmCheck()">Check alarm</button></label>
+            <hr>
+            <p><span id="output"></span></p>
+        </main>
+        <footer>
+            &copy;2020 &bull; Andrew Blackburn &bull; BYU-Idaho &bull; CIT 160
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width-device-width, initial-scale=1.0">
+        <title>Adding the Odds</title>
+        <link rel="stylesheet" href="css-sheets/style.css">
+        <script>
+            /* Defining Table
+                INPUT:  Get the number they want me to add odds from.
+                PROCESSING: With a for loop, check each iteration to see if the number is odd, and if it is, add to the sum.
+                OUTPUT: Display sum on the document
+                */
+
+            function sumOdds() {
+                //INPUT
+                let x = parseFloat(document.getElementById('number1').value);
+                let sum = 0;
+                //PROCESSING
+                for( let i = 1; i <= x; i++ ){
+                    if( i % 2 == 1 ){ sum += i; }
+                }
+                //OUTPUT
+                document.getElementById('output').innerHTML = "The sum of odd numbers up to " + x + " is " +  sum + "!";
+                }
+        </script>
+    </head>
+    <body>
+        <header>
+            <h1>Week 8: Sum of Odds</h1>
+            <h2>Andrew Blackburn</h2>
+        </header>
+        <main>
+            <h3>Serial Addition</h3>
+            <label>Enter Number: <input type="text" id="number1"></label>
+            <label><button onclick="sumOdds()">Answer!</button></label>
+            <hr>
+            <p><span id="output"></span></p>
+        </main>
+        <footer>
+            &copy;2020 &bull; Andrew Blackburn &bull; BYU-Idaho &bull; CIT 160
+        </footer>
+    </body>
+</html>

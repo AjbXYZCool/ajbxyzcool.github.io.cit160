@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width-device-width, initial-scale=1.0">
+        <title>Investment Calculator</title>
+        <link rel="stylesheet" href="css-sheets/style.css">
+        <script>
+            /* Defining Table
+                INPUT:  Get 4 inputs for the principal, rate, years, and number of periods
+                PROCESSING: Calculate future value
+                OUTPUT: Display value
+                */
+
+            function doFV(){
+
+                let principal = parseFloat(document.getElementById('number1').value);
+                let rate = parseFloat(document.getElementById('number2').value);
+                let years = parseFloat(document.getElementById('number3').value);
+                let periods = parseFloat(document.getElementById('number4').value);
+
+                let answer = computeFutureValue(principal, rate, years, periods);
+                answer = Math.round(answer * 100)/100;
+
+                document.getElementById('output').innerHTML = "$" + answer;
+
+            }
+            
+            function computeFutureValue(principal, annualRate, years, periodsPerYear){
+
+                let periodRate = annualRate/periodsPerYear;
+                let totalPeriods = years * periodsPerYear;
+
+                let future = principal * Math.pow((1 + periodRate), totalPeriods);
+
+                return future;
+
+            }
+        </script>
+    </head>
+    <body>
+        <header>
+            <h1>Week 11: Investment Calculator</h1>
+            <h2>Andrew Blackburn</h2>
+        </header>
+        <main>
+            <h3>Future Value</h3>
+            <label>Amount invested (principal): <input type="text" id="number1"></label>
+            <label>Annual rate (example: .08): <input type="text" id="number2"></label>
+            <label>Number of years: <input type="text" id="number3"></label>
+            <label>Periods per year: <input type="text" id="number4"></label>
+            <label><button onclick="doFV()">Compute Future Value</button></label>
+            <hr>
+            <p><span id="output"></span></p>
+        </main>
+        <footer>
+            &copy;2020 &bull; Andrew Blackburn &bull; BYU-Idaho &bull; CIT 160
+        </footer>
+    </body>
+</html>

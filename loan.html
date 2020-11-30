@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width-device-width, initial-scale=1.0">
+        <title>Loan Tracker</title>
+        <link rel="stylesheet" href="css-sheets/style.css">
+        <script>
+            
+            function computePayment(principal, annualRate, years, periodsPerYear){
+
+                let periodRate = annualRate/periodsPerYear;
+                let totalPeriods = years * periodsPerYear;
+
+                let periodPayment = (principal * periodRate)/(1 - Math.pow((1+periodRate), 0 - totalPeriods));
+                return periodPayment;
+
+            }
+
+            function computeBalance(principal, annualRate, years, periodsPerYear, numberOfPaymentsPaidToDate){
+
+                let periodRate = annualRate/periodsPerYear;
+                let periodPayment = Math.round(computePayment(principal, annualRate, years, periodsPerYear, numberOfPaymentsPaidToDate) * 100)/100;
+                // Value for (1 + periodRate)^numberOfPaymentsPaidToDate - done to simplify the main equation
+                let powerValue = Math.pow(( 1 + periodRate ), numberOfPaymentsPaidToDate);
+
+                let balance = (principal * powerValue) - ((periodPayment * (powerValue - 1))/periodRate);
+
+                return balance;
+            }
+
+            function doPayment() {
+
+                //INPUT
+                let principal = parseFloat(document.getElementById('number1').value);
+                let rate = parseFloat(document.getElementById('number2').value);
+                let years = parseFloat(document.getElementById('number3').value);
+                let periods = parseFloat(document.getElementById('number4').value);
+                //PROCESSING
+                let periodPayment = Math.round(computePayment(principal, rate, years, periods) * 100)/100;
+                //OUTPUT
+                document.getElementById('output1').innerHTML = "$" + periodPayment;
+
+            }
+
+            function doBalance(){
+
+                let principal = parseFloat(document.getElementById('number1').value);
+                let rate = parseFloat(document.getElementById('number2').value);
+                let years = parseFloat(document.getElementById('number3').value);
+                let periods = parseFloat(document.getElementById('number4').value);
+                let numPayments = parseFloat(document.getElementById('number5').value);
+
+                let remainBalance = Math.round(computeBalance(principal, rate, years, periods, numPayments) * 100)/100;
+                document.getElementById('output2').innerHTML = "$" + remainBalance;
+
+            }
+        </script>
+    </head>
+    <body>
+        <header>
+            <h1>Week 11: Loan Manager</h1>
+            <h2>Andrew Blackburn</h2>
+        </header>
+        <main>
+            <h3>Loan Calculations</h3>
+            <label>Amount invested (principal): <input type="text" id="number1"></label>
+            <label>Annual rate (example: .08): <input type="text" id="number2"></label>
+            <label>Number of years: <input type="text" id="number3"></label>
+            <label>Periods per year: <input type="text" id="number4"></label>
+            <label><button onclick="doPayment()">Compute payment</button></label>
+            <hr>
+            <p><span id="output1"></span></p>
+            <hr>
+            <label>Number of payments made to date: <input type="text" id="number5"></label>
+            <label><button onclick="doBalance()">Compute payoff amount</button></label>
+            <hr>
+            <p><span id="output2"></span></p>
+        </main>
+        <footer>
+            &copy;2020 &bull; Andrew Blackburn &bull; BYU-Idaho &bull; CIT 160
+        </footer>
+    </body>
+</html>
